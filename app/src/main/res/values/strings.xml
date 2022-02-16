@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">githubChallenge</string>
+    <string name="repository_name">Nome do repositório:</string>
+    <string name="stars">Estrelas:</string>
+    <string name="forks">Forks:</string>
+    <string name="author_name">Nome do autor:</string>
+</resources>
