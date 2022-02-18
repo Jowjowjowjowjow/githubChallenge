@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerViewRepositories.apply {
             repositoryAdapter = RepositoryAdapter()
             repositoryAdapter.setLoadNextPageFunction {
-                lifecycleScope.launch(Dispatchers.IO) {
+                lifecycleScope.launch(Dispatchers.Main) {
                     viewModel.getGithubRepositories(it)
                 }
                 binding.progressBarLoadingMoreItems.visibility = View.VISIBLE
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun subscribeErrorWhenGettingInfoFromApi() {
         viewModel.errorGettingRepositoryListLiveData.observe(this, {
-            Toast.makeText(this@MainActivity, "Erro ao buscar dados - $it", Toast.LENGTH_LONG)
+            Toast.makeText(this@MainActivity, "Erro ao buscar dados - ${it.message}", Toast.LENGTH_LONG)
                 .show()
             binding.progressBarLoadingMoreItems.visibility = View.GONE
         })

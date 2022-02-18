@@ -9,7 +9,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val githubApi = "https://api.github.com/search/"
+const val baseURL = "https://api.github.com/search/"
 val HTTP_LOGGING_QUALIFIER = named("HTTP_LOGGING_QUALIFIER")
 val API_CACHE = named("API_CACHE")
 
@@ -17,7 +17,7 @@ val networkModule = module {
 
     single<Retrofit> {
         Retrofit.Builder()
-            .baseUrl(githubApi)
+            .baseUrl(baseURL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
