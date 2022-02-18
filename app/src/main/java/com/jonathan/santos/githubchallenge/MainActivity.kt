@@ -6,7 +6,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import com.jonathan.santos.githubchallenge.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +38,9 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerViewRepositories.apply {
             repositoryAdapter = RepositoryAdapter()
             repositoryAdapter.setLoadNextPageFunction {
-                viewModel.getGithubRepositories(it)
+                lifecycleScope.launch(Dispatchers.IO) {
+                    viewModel.getGithubRepositories(it)
+                }
                 binding.progressBarLoadingMoreItems.visibility = View.VISIBLE
             }
 
