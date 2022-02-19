@@ -18,6 +18,7 @@ val networkModule = module {
     single<Retrofit> {
         Retrofit.Builder()
             .baseUrl(baseURL)
+            .client(get())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
