@@ -1,5 +1,6 @@
 package com.jonathan.santos.githubchallenge
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jonathan.santos.githubchallenge.data.repository.GitHubRepository
@@ -10,10 +11,10 @@ class MainViewModel(
 ) : ViewModel() {
 
     private val _repositoryListLiveData = MutableLiveData<List<Repository>>()
-    val repositoryListLiveData = _repositoryListLiveData
+    val repositoryListLiveData: LiveData<List<Repository>> = _repositoryListLiveData
 
     private val _errorGettingRepositoryListLiveData = MutableLiveData<Throwable>()
-    val errorGettingRepositoryListLiveData = _errorGettingRepositoryListLiveData
+    val errorGettingRepositoryListLiveData: LiveData<Throwable> = _errorGettingRepositoryListLiveData
 
     suspend fun getGithubRepositories(pageNumber: Int) {
         val response = gitHubRepository.getGithubInfo(pageNumber)
