@@ -9,6 +9,7 @@ import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType
 import okhttp3.ResponseBody
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -63,6 +64,7 @@ internal class MainViewModelTest {
             verify {
                 repositoryListLiveDataObserver.onChanged(repositoryListStub.list)
             }
+            assertEquals(repositoryListStub.list, subject.repositoryListLiveData.value)
         }
 
     @Test
@@ -77,7 +79,5 @@ internal class MainViewModelTest {
             verify {
                 errorGettingRepositoryListLiveDataObserver.onChanged(any())
             }
-
         }
-
 }
