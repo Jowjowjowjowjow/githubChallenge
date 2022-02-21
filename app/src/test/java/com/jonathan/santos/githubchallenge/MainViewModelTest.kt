@@ -68,7 +68,7 @@ internal class MainViewModelTest {
         }
 
     @Test
-    fun `When fail calling getGithubRepositories Should set value for errorGettingRepositoryListLiveData`() =
+    fun `When fail calling getGithubRepositories Should emit value on errorGettingRepositoryListLiveData`() =
         runBlocking {
 
             val response = Response.error<RepositoryList>(400, ResponseBody.create(MediaType.get("application/json"), RepositoryList(listOf()).toString()))
